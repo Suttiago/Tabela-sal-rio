@@ -12,6 +12,15 @@
     Fiz 3 campos que irei dividir meu salário, Gastos fixos, lazer e investimentos, foi meu primeiro projeto em PHP
     e pretendo melhorar ele no futuro -->
 
+    <?php 
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Acessa os valores do formulário usando $_POST
+            $nome = $_POST["nome"] ?? "Nome não fornecido";
+            $senha = $_POST["senha"] ?? "Senha não fornecida";
+        }
+        echo "$nome ";
+        echo "$senha";
+    ?>
 
 
 
