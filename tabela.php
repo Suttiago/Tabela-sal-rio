@@ -13,15 +13,26 @@
     e pretendo melhorar ele no futuro -->
 
     <?php 
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            // Acessa os valores do formulário usando $_POST
-            $nome = $_POST["nome"] ?? "Nome não fornecido";
-            $senha = $_POST["senha"] ?? "Senha não fornecida";
-        }
-        echo "$nome ";
-        echo "$senha";
-    ?>
+      if(isset($_POST["submit"])){
+         
+        include_once("conexao.php");
 
+        $nome = $_POST["nome"];
+        $email = $_POST["email"];
+        $phone = $_POST["phone"];
+        $genero = $_POST["genero"];
+        $data_nascimento = $_POST["data_nascimento"];
+
+        echo "$nome, $email, $phone, $genero, $data_nascimento";
+
+        $result = mysqli_query($conn, "INSERT INTO usuários (Nome, Email, Telefone, Sexo, Nascimento) 
+        VALUES('$nome', '$email', '$phone', '$genero', '$data_nascimento')");
+        
+    }
+
+    
+    
+    ?>
 
 
 
