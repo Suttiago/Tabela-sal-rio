@@ -12,23 +12,32 @@
     Fiz 3 campos que irei dividir meu salário, Gastos fixos, lazer e investimentos, foi meu primeiro projeto em PHP
     e pretendo melhorar ele no futuro -->
 
-    <?php 
+    <?php  
+        session_start();
+        error_reporting(E_ERROR);
+
+        $logado = $_SESSION['email'];
+        echo "$logado";
       if(isset($_POST["submit"])){
-         
-        include_once("conexao.php");
+  
+          include_once("conexao.php");
 
-        $nome = $_POST["nome"];
-        $email = $_POST["email"];
-        $phone = $_POST["phone"];
-        $genero = $_POST["genero"];
-        $data_nascimento = $_POST["data_nascimento"];
+          $nome = $_POST["nome"];
+          $email = $_POST["email"];
+          $senha = $_POST["senha"];
+          $phone = $_POST["phone"];
+          $genero = $_POST["genero"];
+          $data_nascimento = $_POST["data_nascimento"];
 
-        echo "$nome, $email, $phone, $genero, $data_nascimento";
 
-        $result = mysqli_query($conn, "INSERT INTO usuários (Nome, Email, Telefone, Sexo, Nascimento) 
-        VALUES('$nome', '$email', '$phone', '$genero', '$data_nascimento')");
+          $result = mysqli_query($conn, "INSERT INTO usuários (Nome, Email, Senha, Telefone, Sexo, Nascimento) 
+          VALUES('$nome', '$email', '$senha', '$phone', '$genero', '$data_nascimento')");
+      
+       }
+
+      
         
-    }
+    
 
     
     
@@ -52,7 +61,7 @@
         $invest = intval($salario *(0.2));
         //Fiz uma fórmula para ver o quanto irá sobrar no fim do mês
         $tot_fin_mes = intval($salario - ($gastos + $lazer + $invest));
-
+        
         //Fiz uma tabela para deixar os dados organizados
         echo "<table border='1' style='width: 300px'>";
         echo "<tr><th>Categoria</th><th>Valor</th></tr>";
